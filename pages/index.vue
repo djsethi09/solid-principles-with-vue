@@ -6,14 +6,21 @@
 5. DIP - All the API classes should implement API interface, and Home.vue should depend on IAPI, rather than API. Depend on Abstractions 
 -->
 <template>
-  <Photos :photos="photos" :headers="headers" />
+  <Photos>
+    <PhotosList :photos="photos" :headers="headers" />
+    <PhotosGrid :photos="photos" :headers="headers" />
+  </Photos>
 </template>
 <script>
 import Photos from "../components/Photos";
+import PhotosList from "../components/PhotosList";
+import PhotosGrid from "../components/PhotosGrid";
 import Api from "../api/Api";
 export default {
   components: {
-    Photos: Photos
+    Photos,
+    PhotosList,
+    PhotosGrid
   },
 
   data: () => ({
