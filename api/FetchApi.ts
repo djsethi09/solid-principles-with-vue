@@ -1,6 +1,7 @@
 import { IPhoto } from "~/types/Photo"
+import IApi from "~/types/IApi"
 
-export default class FetchApi {
+export default class FetchApi implements IApi {
     baseUrl = 'https://jsonplaceholder.typicode.com/'
     constructor() {
 

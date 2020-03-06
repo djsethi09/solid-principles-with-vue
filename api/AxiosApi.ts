@@ -1,7 +1,8 @@
 import BaseApi from './BaseApi';
 import axios from 'axios'
 import { IPhoto } from '~/types/Photo';
-export default class AxiosApi extends BaseApi {
+import IApi from '~/types/IApi';
+export default class AxiosApi extends BaseApi implements IApi {
     constructor() {
         super()
     }

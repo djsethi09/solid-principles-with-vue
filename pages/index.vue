@@ -18,6 +18,7 @@ import PhotosList from "@/components/PhotosList.vue";
 import PhotosGrid from "@/components/PhotosGrid.vue";
 import { Api } from "@/api/Api";
 import { IPhoto } from "../types/Photo";
+import IApi from "../types/IApi";
 @Component({
   components: {
     Photos,
@@ -25,7 +26,7 @@ import { IPhoto } from "../types/Photo";
     PhotosGrid
   }
 })
-export default class Index extends Vue {
+export default class Index extends Vue implements IApi {
   photos: any[] = [];
   headers: any[] = [
     {
@@ -45,8 +46,11 @@ export default class Index extends Vue {
     this.photos = await this.fetchPhotos();
   }
   async fetchPhotos(): Promise<IPhoto[]> {
+    return await this.fetch("albums/1/photos");
+  }
+  async fetch(url: string): Promise<IPhoto[]> {
     const api = new Api();
-    return await api.fetch("albums/1/photos");
+    return await api.fetch(url);
   }
 }
 </script>
