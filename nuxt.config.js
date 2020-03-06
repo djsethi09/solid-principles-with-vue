@@ -1,7 +1,10 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  mode: 'universal',
+  mode: 'spa',
+  router: {
+    base: '/solid-vue/'
+  },
   /*
   ** Headers of the page
   */
