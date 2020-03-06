@@ -3,7 +3,7 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   mode: 'spa',
   router: {
-    base: '/solid-vue/'
+    base: '/solid-nuxt-vue/'
   },
   /*
   ** Headers of the page
