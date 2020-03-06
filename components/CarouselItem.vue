@@ -15,7 +15,7 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import ICarouselItem from "@/types/CarouselItem";
+import ICarouselItem from "@/types/ICarouselItem";
 @Component
 export default class CarouselItem extends Vue {
   @Prop({ type: Object, required: true }) readonly item!: ICarouselItem;
