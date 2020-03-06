@@ -6,10 +6,17 @@
 5. DIP - All the API classes should implement API interface, and Home.vue should depend on IAPI, rather than API. Depend on Abstractions 
 -->
 <template>
-  <Photos>
-    <PhotosList :photos="photos" :headers="headers" />
-    <PhotosGrid :photos="photos" :headers="headers" />
-  </Photos>
+  <div>
+    <Photos>
+      <PhotosList :photos="photos" :headers="headers" />
+    </Photos>
+    <br />
+    <br />
+    <hr />
+    <Photos>
+      <PhotosGrid :photos="photos" :headers="headers" />
+    </Photos>
+  </div>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
@@ -36,8 +43,7 @@ export default class Index extends Vue implements IApi {
       value: "id"
     },
     { text: "Title", value: "title", sortable: true },
-    { text: "Thumbnail", value: "thumbnailUrl" },
-    { text: "Actions", value: "action", sortable: false }
+    { text: "Thumbnail", value: "thumbnailUrl" }
   ];
   created() {
     //this.initialize();
