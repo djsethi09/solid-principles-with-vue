@@ -11,40 +11,42 @@
     <PhotosGrid :photos="photos" :headers="headers" />
   </Photos>
 </template>
-<script>
-import Photos from "../components/Photos";
-import PhotosList from "../components/PhotosList";
-import PhotosGrid from "../components/PhotosGrid";
-import Api from "../api/Api";
-export default {
+<script lang="ts">
+import { Vue, Component, Prop } from "vue-property-decorator";
+import Photos from "@/components/Photos.vue";
+import PhotosList from "@/components/PhotosList.vue";
+import PhotosGrid from "@/components/PhotosGrid.vue";
+import { Api } from "@/api/Api";
+import { IPhoto } from "../types/Photo";
+@Component({
   components: {
     Photos,
     PhotosList,
     PhotosGrid
-  },
-
-  data: () => ({
-    photos: [],
-    headers: [
-      {
-        text: "Id",
-        align: "start",
-        sortable: false,
-        value: "id"
-      },
-      { text: "Title", value: "title", sortable: true },
-      { text: "Thumbnail", value: "thumbnailUrl" }
-    ]
-  }),
+  }
+})
+export default class Index extends Vue {
+  photos: any[] = [];
+  headers: any[] = [
+    {
+      text: "Id",
+      align: "start",
+      sortable: false,
+      value: "id"
+    },
+    { text: "Title", value: "title", sortable: true },
+    { text: "Thumbnail", value: "thumbnailUrl" },
+    { text: "Actions", value: "action", sortable: false }
+  ];
   created() {
     //this.initialize();
-    this.fetchTodos();
-  },
-  methods: {
-    async fetchTodos() {
-      const api = new Api("albums/1/photos");
-      this.photos = await api.fetch();
-    }
   }
-};
+  async mounted() {
+    this.photos = await this.fetchPhotos();
+  }
+  async fetchPhotos(): Promise<IPhoto[]> {
+    const api = new Api();
+    return await api.fetch("albums/1/photos");
+  }
+}
 </script>

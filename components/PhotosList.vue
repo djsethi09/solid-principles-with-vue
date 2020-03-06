@@ -5,8 +5,22 @@
     </template>
   </v-data-table>
 </template>
-<script>
-export default {
-  props: { photos: {}, headers: {} }
-};
+<script lang="ts">
+import { Vue, Component, Prop } from "vue-property-decorator";
+import { IPhoto } from "../types/Photo";
+@Component
+export default class PhotosList extends Vue {
+  @Prop({
+    default: () => {
+      [];
+    }
+  })
+  photos!: IPhoto[];
+  @Prop({
+    default: () => {
+      [];
+    }
+  })
+  headers!: any[];
+}
 </script>
